@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Anvuu 💗</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fff0f3;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .container {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+        }
+        h1 { color: #ff4d6d; font-size: 2.2rem; margin-bottom: 10px; line-height: 1.2; }
+        .sub-text { color: #555; font-size: 1.2rem; margin-bottom: 20px; }
+        .buttons { margin-top: 2rem; position: relative; display: flex; justify-content: center; gap: 20px; }
+        button {
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
+        #noBtn { background-color: #adb5bd; color: white; position: relative; }
+        
+        .main-heart { 
+            font-size: 60px; 
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        #successMessage { display: none; }
+        .message-title { color: #ff4d6d; font-size: 2rem; margin-bottom: 10px; }
+        .message-body { color: #d63384; font-size: 1.4rem; line-height: 1.5; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="askContainer">
+        <div class="main-heart">💗</div>
+        <h1>Yoo Anvuu!!!💗</h1>
+        <p class="sub-text">Will you be mine forever?</p>
+        
+        <div class="buttons" id="btnGroup">
+            <button id="yesBtn" onclick="celebrate()">Yes</button>
+            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
+        </div>
+    </div>
+
+    <div id="successMessage">
+        <div class="main-heart">🫠✨</div>
+        <div class="message-title">I knew it!</div>
+        <div class="message-body">
+            I Love You So Much!!!💗<br>
+            and Happy Propose Day!!🫠✨
+        </div>
+    </div>
+</div>
+
+<script>
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 100);
+        const noBtn = document.getElementById('noBtn');
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+    }
+
+    function celebrate() {
+        document.getElementById('askContainer').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        
+        for(let i=0; i<50; i++) {
+            setTimeout(createConfetti, i * 100);
+        }
+    }
+
+    function createConfetti() {
+        const heart = document.createElement('div');
+        heart.innerHTML = '💗';
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '-20px';
+        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+        heart.style.zIndex = '1000';
+        document.body.appendChild(heart);
+
+        const animation = heart.animate([
+            { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+            { transform: `translateY(110vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+            duration: Math.random() * 3000 + 2000,
+            easing: 'ease-in'
+        });
+
+        animation.onfinish = () => heart.remove();
+    }
+</script>
+
+</body>
+</html>
